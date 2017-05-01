@@ -1,0 +1,5 @@
+#!/bin/bash
+trap "rm -f $1.tmp; exit 1" 0 1 2 3 13 15
+tee $1.tmp <&0 >/dev/null
+mv $1.tmp $1
+trap 0
