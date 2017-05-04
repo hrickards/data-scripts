@@ -1,4 +1,15 @@
 #!/bin/bash
+
+if [[ $# -eq 0 ]] ; then
+    cat << EOM
+Use this to pipe to files in-place (i.e., read
+and write from the same file simultaneously)
+
+Usage: cat \$filename | transform | stee \$filename
+EOM
+    exit 0
+fi
+
 trap "rm -f $1.tmp; exit 1" 0 1 2 3 13 15
 tee $1.tmp <&0 >/dev/null
 mv $1.tmp $1
