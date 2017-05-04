@@ -1,2 +1,16 @@
 #!/bin/bash
+
+if [[ $# -eq 0 ]] ; then
+    cat << EOM
+Use this to remove Windows carriage returns
+(useful after editing csv files with MS Excel)
+
+Usage: dexcel \$filename
+EOM
+    exit 0
+fi
+
+# use this to pipe files in-place
+# e.g., 
+
 cat $1 | sed -e 's///' | stee $1
